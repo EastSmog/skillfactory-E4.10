@@ -3,7 +3,6 @@ version: '3.8'
 services:
   web:
     build: ./hello_django
-    image: naytar/web:latest
     command: sh -c "python manage.py migrate && python manage.py createsuperuser --noinput && gunicorn hello_django.wsgi:application --bind 0.0.0.0:8000"
     environment:
       - DJANGO_SUPERUSER_USERNAME=adm
@@ -28,7 +27,6 @@ services:
       - POSTGRES_DB=hello_django_dev
   nginx:
     build: ./nginx
-    image: naytar/nginx:latest
     ports:
       - "8000:80"
     volumes:
