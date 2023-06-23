@@ -19,13 +19,5 @@ RUN pip install -r requirements.txt
 
 RUN mkdir /usr/src/hello_django/static
 
-# copy entrypoint.sh
-COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /usr/src/hello_django/entrypoint.sh
-RUN chmod +x /usr/src/hello_django/entrypoint.sh
-
 # copy project
 COPY . .
-
-# run entrypoint.sh
-ENTRYPOINT ["/usr/src/hello_django/entrypoint.sh"]
